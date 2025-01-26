@@ -9,15 +9,15 @@ There are currently no plans to support the Export.
 ## Usage
 Model files (.dxm) and textures (.dds) must be prepared in advance.<br>
 These files are stored in the game in a compressed format called (.dxb) or (.dxm).<br>
-(.dxb) or (.dxm) can be extracted with the following tool. <br>
-<--Link-->
+(.dxb) or (.dxm) can be extracted with EDF2017parser.7z. <br>
+
 ## Known Issues
 * Model file EDF2017 portable is not supported due to different bone structure.<br>
 Pale wing does not load. I hope to fix it someday.
 * In models consisting of multiple meshes, positional relationships are not reflected (e.g., Player01.Dxm visor).
 * Textures are not automatically reflected.<br>
 I think it will load, so please reflect this manually.
-<--pic-->
+![tex](https://github.com/user-attachments/assets/895d3fdd-4e74-4544-a139-b0759efc11db)
 ## Other
 * Documentation of EDF2017 file format<br>
 https://github.com/KCreator/Earth-Defence-Force-Documentation/wiki/EDF3(EDF2017)-DXB-and-DXM-Format<br>
