@@ -97,9 +97,9 @@ def parse_bones(f, count, offset):
         bone = {}
         base = f.tell()
         
-        bone['ID'] = i 
+        bone['ID'] = i
         bone['matrix_parent'] = mathutils.Matrix.Identity(4)
-        bone['parent'] = i
+        bone['parent'] = -1       # All bones are initially set to non-parent status.
         
         bone['matrix_local'] = read_matrix2(f) # Transformation Matrix local
         bone['matrix_invbind'] = read_matrix2(f) # Transformation Matrix Invert Bind Pose
@@ -131,13 +131,9 @@ def parse_bones(f, count, offset):
         f.seek(next)
         bones.append(bone)
     
-    for i in range(count):
-        if bones[i]['ID'] == 0:
-             bones[i]['parent'] = -1
-             
+    for i in range(count):         
         for j in range(bones[i]['child_count']):
             index = i + j + int(bones[i]['first_child'] / 0x5C)
-            #bones[index]['matrix_parent'] = bones[i]['matrix_parent'] @ bones[index]['matrix_local']
             bones[index]['parent'] = bones[i]['ID']
         
     return bones
@@ -585,6 +581,8 @@ def load(operator, context, filepath='', **kwargs):
                     name = 'g_Highlight'
                 elif 'g_Time' in param['name']:
                     name = 'g_Time' 
+                else :
+                    name = '' 
             
                 if param['type'] == 0:
                     input_node = warnparam(shader_node.inputs.get(name), mdb_material, param)
